@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 import { FormData } from './RegistrationPage';
 import { useRegistrations } from '../contexts/RegistrationContext';
+import { useNavigate } from 'react-router-dom';
 
 const fadeInUp = keyframes`
   from {
@@ -152,6 +153,56 @@ const SuccessMessage = styled.div`
   animation: ${fadeInUp} 0.6s ease-out;
 `;
 
+// Success modal
+const Backdrop = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: ${fadeInUp} 0.3s ease-out;
+`;
+
+const ModalCard = styled.div`
+  width: min(460px, 92vw);
+  background: linear-gradient(135deg, rgba(12,12,12,0.95), rgba(22,33,62,0.95));
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 212, 255, 0.18);
+  animation: ${fadeInUp} 0.35s ease-out;
+`;
+
+const pop = keyframes`
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+`;
+
+const CheckCircle = styled.div`
+  margin: 0 auto 1rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(0,255,136,0.25), rgba(0,255,136,0.1));
+  border: 2px solid #00ff88;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${pop} 0.5s ease-out;
+`;
+
+const CheckMark = styled.div`
+  width: 26px;
+  height: 12px;
+  border-left: 4px solid #00ff88;
+  border-bottom: 4px solid #00ff88;
+  transform: rotate(-45deg);
+`;
+
 const ErrorMessage = styled.div`
   background: rgba(255, 68, 68, 0.1);
   border: 1px solid rgba(255, 68, 68, 0.3);
@@ -190,6 +241,7 @@ const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({ formData, onUpdate })
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const { addRegistration } = useRegistrations();
+    const navigate = useNavigate();
 
     const eventTitles: { [key: string]: string } = {
         'hackathon': '24-Hour Hackathon',
@@ -223,6 +275,10 @@ const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({ formData, onUpdate })
             console.log('Registration saved successfully:', formData);
 
             setSubmitStatus('success');
+            // Briefly show success then navigate
+            setTimeout(() => {
+                navigate('/');
+            }, 1800);
         } catch (error) {
             console.error('Registration failed:', error);
             setSubmitStatus('error');
@@ -248,9 +304,20 @@ const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({ formData, onUpdate })
             </Description>
 
             {submitStatus === 'success' && (
-                <SuccessMessage>
-                    ✅ Registration submitted successfully! You will receive a confirmation email shortly.
-                </SuccessMessage>
+                <>
+                    <SuccessMessage>
+                        ✅ Registration submitted successfully! You will be redirected to the Home page.
+                    </SuccessMessage>
+                    <Backdrop>
+                        <ModalCard>
+                            <CheckCircle>
+                                <CheckMark />
+                            </CheckCircle>
+                            <h3 style={{ color: '#ffffff', marginBottom: '0.5rem' }}>Submission Successful</h3>
+                            <p style={{ color: '#aaaaaa', margin: 0 }}>Thank you for registering for ElectroBlitz'25.</p>
+                        </ModalCard>
+                    </Backdrop>
+                </>
             )}
 
             {submitStatus === 'error' && (
@@ -318,7 +385,7 @@ const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({ formData, onUpdate })
                 </EventsList>
             </Section>
 
-            <Section>
+            {/* <Section>
                 <SectionTitle>
                     ℹ️ Additional Information
                 </SectionTitle>
@@ -340,7 +407,7 @@ const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({ formData, onUpdate })
                         <InfoValue>{formData.additionalInfo.emergencyPhone || 'Not provided'}</InfoValue>
                     </InfoItem>
                 </AdditionalInfo>
-            </Section>
+            </Section> */}
 
             <SubmitButton
                 onClick={handleSubmit}

@@ -271,7 +271,7 @@ const RegistrationPage: React.FC = () => {
         <RegistrationContainer>
             <RegistrationCard>
                 <Title>Registration</Title>
-                <Subtitle>Join ElectroBliz 2024</Subtitle>
+                <Subtitle>Join ElectroBlitz 2025</Subtitle>
 
                 <ProgressContainer>
                     <ProgressBar>

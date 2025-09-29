@@ -218,15 +218,9 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ data, onUpdate }) => {
     ];
 
     const departmentOptions = [
-        'Computer Science & Engineering',
-        'Electronics & Communication Engineering',
-        'Electrical Engineering',
-        'Mechanical Engineering',
-        'Civil Engineering',
-        'Information Technology',
-        'Data Science',
-        'Artificial Intelligence',
-        'Other'
+        'ECE',
+        'EXE',
+        'EVD'
     ];
 
     return (

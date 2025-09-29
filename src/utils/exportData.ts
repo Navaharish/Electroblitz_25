@@ -1,7 +1,7 @@
 import * as XLSX from 'xlsx';
 import { FormData } from '../components/RegistrationPage';
 
-export const exportToExcel = (data: FormData[], filename: string = 'electrobliz-registrations.xlsx') => {
+export const exportToExcel = (data: FormData[], filename: string = 'electroblitz-registrations.xlsx') => {
     // Transform the data for Excel export
     const exportData = data.map((registration, index) => ({
         'S.No': index + 1,
@@ -11,7 +11,6 @@ export const exportToExcel = (data: FormData[], filename: string = 'electrobliz-
         'Phone': registration.personalInfo.phone,
         'College': registration.personalInfo.college,
         'Academic Year': registration.personalInfo.year,
-        'Department': registration.personalInfo.department,
         'Category': registration.category,
         'Selected Events': registration.selectedEvents.join(', '),
         'Dietary Requirements': registration.additionalInfo.dietaryRequirements || 'None',
@@ -36,7 +35,6 @@ export const exportToExcel = (data: FormData[], filename: string = 'electrobliz-
         { wch: 15 },  // Phone
         { wch: 30 },  // College
         { wch: 15 },  // Academic Year
-        { wch: 30 },  // Department
         { wch: 15 },  // Category
         { wch: 40 },  // Selected Events
         { wch: 20 },  // Dietary Requirements
@@ -61,11 +59,11 @@ export const exportCategoryToExcel = (
 ) => {
     const filtered = data.filter(r => r.category === category);
     const niceName = category === 'tech' ? 'technical' : category === 'non-tech' ? 'non-technical' : 'workshop';
-    const outName = filename || `electrobliz-${niceName}-registrations.xlsx`;
+    const outName = filename || `electroblitz-${niceName}-registrations.xlsx`;
     return exportToExcel(filtered, outName);
 };
 
-export const exportToCSV = (data: FormData[], filename: string = 'electrobliz-registrations.csv') => {
+export const exportToCSV = (data: FormData[], filename: string = 'electroblitz-registrations.csv') => {
     // Transform the data for CSV export
     const exportData = data.map((registration, index) => ({
         'S.No': index + 1,
@@ -75,7 +73,6 @@ export const exportToCSV = (data: FormData[], filename: string = 'electrobliz-re
         'Phone': registration.personalInfo.phone,
         'College': registration.personalInfo.college,
         'Academic Year': registration.personalInfo.year,
-        'Department': registration.personalInfo.department,
         'Category': registration.category,
         'Selected Events': registration.selectedEvents.join(', '),
         'Dietary Requirements': registration.additionalInfo.dietaryRequirements || 'None',
@@ -100,7 +97,7 @@ export const exportToCSV = (data: FormData[], filename: string = 'electrobliz-re
     document.body.removeChild(link);
 };
 
-export const exportEventStatistics = (events: any[], filename: string = 'electrobliz-event-stats.xlsx') => {
+export const exportEventStatistics = (events: any[], filename: string = 'electroblitz-event-stats.xlsx') => {
     const statsData = events.map((event, index) => ({
         'Event ID': event.id,
         'Event Name': event.title,

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const fadeInUp = keyframes`
   from {
@@ -268,11 +269,12 @@ const CTA = styled.div`
   margin-top: 4rem;
 `;
 
-const CTAButton = styled.button`
+const CTAButton = styled(Link)`
   background: linear-gradient(45deg, #00d4ff, #ff00ff);
   color: #ffffff;
   padding: 1rem 2.5rem;
-  border: none;
+  text-decoration: none;
+  text-align: center;
   border-radius: 50px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -307,12 +309,12 @@ const AboutPage: React.FC = () => {
         <AboutContainer>
             <AboutContent>
                 <HeroSection>
-                    <Title>About ElectroBliz</Title>
+                    <Title>About ElectroBlitz</Title>
                     <Subtitle>Where Innovation Meets Excellence</Subtitle>
                     <Description>
-                        ElectroBliz is the premier technical festival organized by the Electronics and Computer Engineering
+                        ElectroBlitz is the premier technical festival organized by the Electronics and Computer Engineering
                         department, bringing together students, professionals, and industry experts for three days of
-                        innovation, learning, and competition. Since its inception, ElectroBliz has been a platform for
+                        innovation, learning, and competition. Since its inception, ElectroBlitz has been a platform for
                         showcasing cutting-edge technology and fostering creativity in the field of electronics and computing.
                     </Description>
                 </HeroSection>
@@ -353,7 +355,7 @@ const AboutPage: React.FC = () => {
                         <TimelineItem>
                             <TimelineIcon>📅</TimelineIcon>
                             <TimelineContent>
-                                <TimelineDate>Day 1 - March 15, 2024</TimelineDate>
+                                <TimelineDate>October 24</TimelineDate>
                                 <TimelineTitle>Opening Ceremony & Technical Events</TimelineTitle>
                                 <TimelineDescription>
                                     Kick off the festival with an inspiring opening ceremony followed by coding competitions,
@@ -364,7 +366,7 @@ const AboutPage: React.FC = () => {
                         <TimelineItem>
                             <TimelineIcon>⚡</TimelineIcon>
                             <TimelineContent>
-                                <TimelineDate>Day 2 - March 16, 2024</TimelineDate>
+                                <TimelineDate>October 24</TimelineDate>
                                 <TimelineTitle>Workshops & Non-Technical Events</TimelineTitle>
                                 <TimelineDescription>
                                     Dive deep into hands-on workshops with industry experts, participate in cultural events,
@@ -375,7 +377,7 @@ const AboutPage: React.FC = () => {
                         <TimelineItem>
                             <TimelineIcon>🏆</TimelineIcon>
                             <TimelineContent>
-                                <TimelineDate>Day 3 - March 17, 2024</TimelineDate>
+                                <TimelineDate>October 24</TimelineDate>
                                 <TimelineTitle>Finals & Closing Ceremony</TimelineTitle>
                                 <TimelineDescription>
                                     Witness the grand finale of all competitions, award ceremony, and closing remarks
@@ -388,13 +390,13 @@ const AboutPage: React.FC = () => {
 
                 <StatsSection>
                     <h2 style={{ fontSize: '2rem', fontWeight: '700', color: '#ffffff', marginBottom: '1rem' }}>
-                        ElectroBliz by Numbers
+                        ElectroBlitz by Numbers
                     </h2>
                     <p style={{ color: '#aaaaaa', fontSize: '1.1rem' }}>
                         Join thousands of participants in our exciting events
                     </p>
 
-                    <StatsGrid>
+                    {/* <StatsGrid>
                         <StatItem>
                             <StatNumber>5+</StatNumber>
                             <StatLabel>Years</StatLabel>
@@ -419,7 +421,7 @@ const AboutPage: React.FC = () => {
                             <StatNumber>50+</StatNumber>
                             <StatLabel>Sponsors</StatLabel>
                         </StatItem>
-                    </StatsGrid>
+                    </StatsGrid> */}
                 </StatsSection>
 
                 <CTA>
@@ -429,7 +431,7 @@ const AboutPage: React.FC = () => {
                     <p style={{ color: '#aaaaaa', fontSize: '1.1rem', marginBottom: '2rem' }}>
                         Don't miss out on this incredible opportunity to learn, compete, and network with the best minds in technology.
                     </p>
-                    <CTAButton>
+                    <CTAButton to="/register">
                         Register Now
                     </CTAButton>
                 </CTA>

@@ -213,155 +213,22 @@ const EventSelection: React.FC<EventSelectionProps> = ({
     const maxEvents = 5;
 
     const events: Event[] = [
-        // Tech Events
-        {
-            id: 'hackathon',
-            title: '24-Hour Hackathon',
-            description: 'Build innovative solutions using cutting-edge technologies. Prizes worth ₹50,000!',
-            duration: '24 hours',
-            difficulty: 'Advanced',
-            icon: '💻',
-            category: 'tech'
-        },
-        {
-            id: 'coding-contest',
-            title: 'Algorithm Coding Contest',
-            description: 'Test your problem-solving skills with challenging algorithmic problems.',
-            duration: '3 hours',
-            difficulty: 'Intermediate',
-            icon: '⚡',
-            category: 'tech'
-        },
-        {
-            id: 'robotics',
-            title: 'Robotics Challenge',
-            description: 'Design and build autonomous robots to complete various tasks.',
-            duration: '6 hours',
-            difficulty: 'Advanced',
-            icon: '🤖',
-            category: 'tech'
-        },
-        {
-            id: 'ai-ml',
-            title: 'AI/ML Competition',
-            description: 'Create machine learning models to solve real-world problems.',
-            duration: '4 hours',
-            difficulty: 'Advanced',
-            icon: '🧠',
-            category: 'tech'
-        },
-        {
-            id: 'web-dev',
-            title: 'Web Development Contest',
-            description: 'Build responsive and interactive web applications.',
-            duration: '5 hours',
-            difficulty: 'Intermediate',
-            icon: '🌐',
-            category: 'tech'
-        },
-        {
-            id: 'mobile-app',
-            title: 'Mobile App Development',
-            description: 'Create innovative mobile applications for Android/iOS.',
-            duration: '6 hours',
-            difficulty: 'Intermediate',
-            icon: '📱',
-            category: 'tech'
-        },
+        // Technical
+        { id: 'idea-presentation', title: 'Idea Presentation', description: 'Venue: Microprocessor Lab. Team: 2 members.', duration: '—', difficulty: 'Intermediate', icon: '💡', category: 'tech' },
+        { id: 'tech-debate', title: 'Tech Debate', description: 'Venue: Communication Lab.', duration: '—', difficulty: 'Intermediate', icon: '🗣️', category: 'tech' },
+        { id: 'circuit-debugging', title: 'Circuit Debugging', description: 'Venues: Hall No 915, Electronics Lab. Team: 2.', duration: '—', difficulty: 'Intermediate', icon: '🔧', category: 'tech' },
+        { id: 'code-debugging', title: 'Code Debugging', description: 'Venues: Hall No 914, DSP Lab.', duration: '—', difficulty: 'Intermediate', icon: '🐞', category: 'tech' },
+        { id: 'electrathon', title: 'Electrathon', description: 'Venue: Project Corridor. Team: 3-4.', duration: '—', difficulty: 'Advanced', icon: '⚡', category: 'tech' },
 
-        // Non-Tech Events
-        {
-            id: 'quiz',
-            title: 'Tech Quiz',
-            description: 'Test your knowledge of technology, science, and innovation.',
-            duration: '2 hours',
-            difficulty: 'Beginner',
-            icon: '🧠',
-            category: 'non-tech'
-        },
-        {
-            id: 'debate',
-            title: 'Tech Debate',
-            description: 'Debate on controversial topics in technology and society.',
-            duration: '1.5 hours',
-            difficulty: 'Intermediate',
-            icon: '🗣️',
-            category: 'non-tech'
-        },
-        {
-            id: 'presentation',
-            title: 'Tech Presentation',
-            description: 'Present your innovative ideas and projects to the audience.',
-            duration: '10 minutes',
-            difficulty: 'Beginner',
-            icon: '📊',
-            category: 'non-tech'
-        },
-        {
-            id: 'treasure-hunt',
-            title: 'Tech Treasure Hunt',
-            description: 'Solve clues and puzzles to find hidden treasures using technology.',
-            duration: '3 hours',
-            difficulty: 'Beginner',
-            icon: '🔍',
-            category: 'non-tech'
-        },
-        {
-            id: 'gaming',
-            title: 'Gaming Tournament',
-            description: 'Compete in popular games like Valorant, CS:GO, and FIFA.',
-            duration: '4 hours',
-            difficulty: 'Intermediate',
-            icon: '🎮',
-            category: 'non-tech'
-        },
+        // Non-Technical
+        { id: 'dugout-deals', title: 'The Dugout Deals', description: 'Venue: 916 or APJ Hall. Team: 3-4.', duration: '—', difficulty: 'Beginner', icon: '🤝', category: 'non-tech' },
+        { id: 'connections', title: 'Connections', description: 'Venues: Hall No 922 and 923. Team: 2.', duration: '—', difficulty: 'Beginner', icon: '🔗', category: 'non-tech' },
+        { id: 'case-study', title: 'Case Study', description: 'Venues: Hall No 925 and 923. Team: 2.', duration: '—', difficulty: 'Intermediate', icon: '📊', category: 'non-tech' },
 
         // Workshops
-        {
-            id: 'blockchain',
-            title: 'Blockchain Workshop',
-            description: 'Learn about blockchain technology and build your first DApp.',
-            duration: '6 hours',
-            difficulty: 'Intermediate',
-            icon: '⛓️',
-            category: 'workshop'
-        },
-        {
-            id: 'iot',
-            title: 'IoT Development',
-            description: 'Build Internet of Things projects with sensors and microcontrollers.',
-            duration: '8 hours',
-            difficulty: 'Beginner',
-            icon: '🌐',
-            category: 'workshop'
-        },
-        {
-            id: 'cybersecurity',
-            title: 'Cybersecurity Workshop',
-            description: 'Learn ethical hacking and cybersecurity best practices.',
-            duration: '6 hours',
-            difficulty: 'Intermediate',
-            icon: '🔒',
-            category: 'workshop'
-        },
-        {
-            id: 'data-science',
-            title: 'Data Science Workshop',
-            description: 'Analyze data and build predictive models using Python and R.',
-            duration: '8 hours',
-            difficulty: 'Beginner',
-            icon: '📈',
-            category: 'workshop'
-        },
-        {
-            id: 'ui-ux',
-            title: 'UI/UX Design Workshop',
-            description: 'Learn design principles and create beautiful user interfaces.',
-            duration: '6 hours',
-            difficulty: 'Beginner',
-            icon: '🎨',
-            category: 'workshop'
-        }
+        { id: 'frontend', title: 'Frontend', description: 'Venue: VLSI Lab.', duration: '—', difficulty: 'Beginner', icon: '🎨', category: 'workshop' },
+        { id: 'pcb-assembling', title: 'PCB Assembling', description: 'Venue: Microwave Lab.', duration: '—', difficulty: 'Beginner', icon: '🛠️', category: 'workshop' },
+        { id: 'eda-tools', title: 'EDA Tools', description: 'Venue: 3rd Floor Lab.', duration: '—', difficulty: 'Intermediate', icon: '🧩', category: 'workshop' }
     ];
 
     useEffect(() => {

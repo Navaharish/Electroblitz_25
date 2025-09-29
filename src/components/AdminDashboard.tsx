@@ -316,7 +316,7 @@ const AdminDashboard: React.FC = () => {
             <AdminContent>
                 <Header>
                     <Title>Admin Dashboard</Title>
-                    <Subtitle>Manage ElectroBliz Registrations</Subtitle>
+                    <Subtitle>Manage ElectroBlitz Registrations</Subtitle>
                 </Header>
 
                 <StatsGrid>

@@ -300,7 +300,16 @@ const LandingPage: React.FC = () => {
                     Register Now
                 </CTAButton>
 
-                <StatsContainer>
+                <div style={{ marginTop: '2rem', color: '#cccccc' }}>
+                    <div style={{ fontWeight: 700, color: '#00d4ff', marginBottom: '0.5rem' }}>Convenor</div>
+                    <div>Dr. R.S. Sabeenian, HOD/ECE EXC EVD</div>
+
+                    <div style={{ fontWeight: 700, color: '#00d4ff', margin: '1rem 0 0.5rem' }}>Coordinators</div>
+                    <div>Dr. M. Senthi Vadivu, Assistant Professor / ECE</div>
+                    <div>Prof K. Saranya, Assistant Professor / ECE</div>
+                </div>
+
+                {/* <StatsContainer>
                     <StatItem>
                         <StatNumber>50+</StatNumber>
                         <StatLabel>Events</StatLabel>
@@ -313,7 +322,7 @@ const LandingPage: React.FC = () => {
                         <StatNumber>3</StatNumber>
                         <StatLabel>Days</StatLabel>
                     </StatItem>
-                </StatsContainer>
+                </StatsContainer> */}
             </Content>
         </LandingContainer>
     );

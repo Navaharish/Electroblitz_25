@@ -210,6 +210,15 @@ const Navigation: React.FC = () => {
                     </NavLink>
                     <NavLink>
                         <StyledLink
+                            to="/events"
+                            isActive={location.pathname === '/events'}
+                            onClick={closeMobileMenu}
+                        >
+                            Events
+                        </StyledLink>
+                    </NavLink>
+                    <NavLink>
+                        <StyledLink
                             to="/about"
                             isActive={location.pathname === '/about'}
                             onClick={closeMobileMenu}
@@ -219,11 +228,11 @@ const Navigation: React.FC = () => {
                     </NavLink>
                     <NavLink>
                         <StyledLink
-                            to="/events"
-                            isActive={location.pathname === '/events'}
+                            to="/contact"
+                            isActive={location.pathname === '/contact'}
                             onClick={closeMobileMenu}
                         >
-                            Events
+                            Contact
                         </StyledLink>
                     </NavLink>
                     <NavLink>

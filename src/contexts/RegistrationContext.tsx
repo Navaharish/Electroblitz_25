@@ -23,7 +23,7 @@ export const RegistrationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     // Load registrations from localStorage on mount
     useEffect(() => {
-        const savedRegistrations = localStorage.getItem('electrobliz-registrations');
+    const savedRegistrations = localStorage.getItem('electroblitz-registrations');
         if (savedRegistrations) {
             try {
                 setRegistrations(JSON.parse(savedRegistrations));
@@ -35,7 +35,7 @@ export const RegistrationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     // Save registrations to localStorage whenever registrations change
     useEffect(() => {
-        localStorage.setItem('electrobliz-registrations', JSON.stringify(registrations));
+    localStorage.setItem('electroblitz-registrations', JSON.stringify(registrations));
     }, [registrations]);
 
     const addRegistration = (registration: FormData) => {
@@ -53,7 +53,7 @@ export const RegistrationProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
     const clearRegistrations = () => {
         setRegistrations([]);
-        localStorage.removeItem('electrobliz-registrations');
+    localStorage.removeItem('electroblitz-registrations');
     };
 
     const value: RegistrationContextType = {

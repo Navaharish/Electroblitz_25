@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const fadeInUp = keyframes`
   from {
@@ -105,7 +106,7 @@ const FilterTab = styled.button<{ isActive: boolean }>`
     transform: translateY(-2px);
   }
 
-  ${props => props.isActive && `
+  ${props => props.isActive && css`
     animation: ${pulse} 2s ease-in-out infinite;
   `}
 `;
@@ -233,12 +234,12 @@ const RulesList = styled.ul`
   padding-left: 1rem;
 `;
 
-const RegisterButton = styled.button`
+const RegisterButton = styled(Link)`
   width: 100%;
   padding: 0.75rem 1.5rem;
   background: linear-gradient(45deg, #00d4ff, #ff00ff);
   color: #ffffff;
-  border: none;
+  text-align: center;
   border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
@@ -314,103 +315,177 @@ interface Event {
 }
 
 const EventsPage: React.FC = () => {
-    const [activeFilter, setActiveFilter] = useState<'all' | 'tech' | 'non-tech' | 'workshop'>('all');
+    const [activeFilter, setActiveFilter] = useState<'all' | 'tech' | 'non-tech' | 'workshop'>(() => {
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'tech' || hash === 'non-tech' || hash === 'workshop') return hash as any;
+        return 'all';
+    });
+
+    // Update filter when hash changes to support navigation anchors
+    React.useEffect(() => {
+        const onHashChange = () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash === 'tech' || hash === 'non-tech' || hash === 'workshop' || hash === 'all') {
+                setActiveFilter(hash as any);
+            }
+        };
+        window.addEventListener('hashchange', onHashChange);
+        return () => window.removeEventListener('hashchange', onHashChange);
+    }, []);
 
     const events: Event[] = [
+        // Technical Events
         {
-            id: 'hackathon',
-            title: '24-Hour Hackathon',
-            description: 'Build innovative solutions using cutting-edge technologies. Work in teams of 2-4 members to create something amazing in just 24 hours!',
-            duration: '24 hours',
-            difficulty: 'Advanced',
-            prize: '₹50,000',
-            icon: '💻',
+            id: 'idea-presentation',
+            title: 'Idea Presentation',
+            description: 'Present innovative ideas. Venue: Microprocessor Lab. Team of 2 members.',
+            duration: '—',
+            difficulty: 'Intermediate',
+            prize: '—',
+            icon: '💡',
             category: 'tech',
             rules: [
-                'Teams of 2-4 members allowed',
-                'No pre-built code allowed',
-                'Internet access provided',
-                'Presentations at the end'
+                'Venue: Microprocessor Lab',
+                'Team size: 2 members'
             ]
         },
         {
-            id: 'coding-contest',
-            title: 'Algorithm Coding Contest',
-            description: 'Test your problem-solving skills with challenging algorithmic problems. Compete individually and climb the leaderboard!',
-            duration: '3 hours',
+            id: 'tech-debate',
+            title: 'Tech Debate',
+            description: 'Debate current tech topics. Venue: Communication Lab.',
+            duration: '—',
             difficulty: 'Intermediate',
-            prize: '₹25,000',
+            prize: '—',
+            icon: '🗣️',
+            category: 'tech',
+            rules: [
+                'Venue: Communication Lab'
+            ]
+        },
+        {
+            id: 'circuit-debugging',
+            title: 'Circuit Debugging',
+            description: 'Find and fix circuit issues. Venues: Hall No 915, Electronics Lab. Team of 2.',
+            duration: '—',
+            difficulty: 'Intermediate',
+            prize: '—',
+            icon: '🔧',
+            category: 'tech',
+            rules: [
+                'Venues: Hall No 915 and Electronics Lab',
+                'Team size: 2 members'
+            ]
+        },
+        {
+            id: 'code-debugging',
+            title: 'Code Debugging',
+            description: 'Debug code efficiently. Venues: Hall No 914, DSP Lab.',
+            duration: '—',
+            difficulty: 'Intermediate',
+            prize: '—',
+            icon: '🐞',
+            category: 'tech',
+            rules: [
+                'Venues: Hall No 914 and DSP Lab'
+            ]
+        },
+        {
+            id: 'electrathon',
+            title: 'Electrathon',
+            description: 'Team challenge in electronics. Venue: Project Corridor. Team of 3-4.',
+            duration: '—',
+            difficulty: 'Advanced',
+            prize: '—',
             icon: '⚡',
             category: 'tech',
             rules: [
-                'Individual participation only',
-                'No external resources allowed',
-                'Multiple programming languages supported',
-                'Real-time leaderboard'
+                'Venue: Project Corridor',
+                'Team size: 3 to 4 members'
             ]
         },
+
+        // Non-Technical Events
         {
-            id: 'robotics',
-            title: 'Robotics Challenge',
-            description: 'Design and build autonomous robots to complete various tasks. Showcase your engineering and programming skills!',
-            duration: '6 hours',
-            difficulty: 'Advanced',
-            prize: '₹30,000',
-            icon: '🤖',
-            category: 'tech',
-            rules: [
-                'Teams of 2-3 members',
-                'Robots must be autonomous',
-                'Materials provided on-site',
-                'Multiple challenge rounds'
-            ]
-        },
-        {
-            id: 'quiz',
-            title: 'Tech Quiz',
-            description: 'Test your knowledge of technology, science, and innovation. Perfect for those who love trivia and learning!',
-            duration: '2 hours',
+            id: 'dugout-deals',
+            title: 'The Dugout Deals',
+            description: 'Fun team event. Venue: 916 or APJ Hall. Team of 3-4.',
+            duration: '—',
             difficulty: 'Beginner',
-            prize: '₹15,000',
-            icon: '🧠',
+            prize: '—',
+            icon: '🤝',
             category: 'non-tech',
             rules: [
-                'Individual or team participation',
-                'Multiple choice questions',
-                'No external help allowed',
-                'Elimination rounds'
+                'Venue: 916 or APJ Hall',
+                'Team size: 3 to 4 members'
             ]
         },
         {
-            id: 'blockchain',
-            title: 'Blockchain Workshop',
-            description: 'Learn about blockchain technology and build your first DApp. Hands-on workshop with industry experts!',
-            duration: '6 hours',
+            id: 'connections',
+            title: 'Connections',
+            description: 'Classic connections game. Venues: Hall No 922 and 923. Team of 2.',
+            duration: '—',
+            difficulty: 'Beginner',
+            prize: '—',
+            icon: '🔗',
+            category: 'non-tech',
+            rules: [
+                'Venues: Hall No 922 and 923',
+                'Team size: 2 members'
+            ]
+        },
+        {
+            id: 'case-study',
+            title: 'Case Study',
+            description: 'Analyze and present solutions. Venues: Hall No 925 and 923. Team of 2.',
+            duration: '—',
             difficulty: 'Intermediate',
+            prize: '—',
+            icon: '📊',
+            category: 'non-tech',
+            rules: [
+                'Venues: Hall No 925 and 923',
+                'Team size: 2 members'
+            ]
+        },
+
+        // Workshops
+        {
+            id: 'frontend',
+            title: 'Frontend',
+            description: 'Hands-on frontend session. Venue: VLSI Lab.',
+            duration: '—',
+            difficulty: 'Beginner',
             prize: 'Certificate',
-            icon: '⛓️',
+            icon: '🎨',
             category: 'workshop',
             rules: [
-                'Laptop required',
-                'Basic programming knowledge helpful',
-                'Materials provided',
-                'Certificate of completion'
+                'Venue: VLSI Lab'
             ]
         },
         {
-            id: 'gaming',
-            title: 'Gaming Tournament',
-            description: 'Compete in popular games like Valorant, CS:GO, and FIFA. Show off your gaming skills and win prizes!',
-            duration: '4 hours',
-            difficulty: 'Intermediate',
-            prize: '₹20,000',
-            icon: '🎮',
-            category: 'non-tech',
+            id: 'pcb-assembling',
+            title: 'PCB Assembling',
+            description: 'Assemble and learn PCB basics. Venue: Microwave Lab.',
+            duration: '—',
+            difficulty: 'Beginner',
+            prize: 'Certificate',
+            icon: '🛠️',
+            category: 'workshop',
             rules: [
-                'Bring your own devices',
-                'Single elimination bracket',
-                'Fair play rules apply',
-                'Multiple game categories'
+                'Venue: Microwave Lab'
+            ]
+        },
+        {
+            id: 'eda-tools',
+            title: 'EDA Tools',
+            description: 'Explore EDA tools. Venue: 3rd Floor Lab.',
+            duration: '—',
+            difficulty: 'Intermediate',
+            prize: 'Certificate',
+            icon: '🧩',
+            category: 'workshop',
+            rules: [
+                'Venue: 3rd Floor Lab'
             ]
         }
     ];
@@ -494,7 +569,7 @@ const EventsPage: React.FC = () => {
                                 </RulesList>
                             </EventRules>
 
-                            <RegisterButton>
+                            <RegisterButton to="/register">
                                 Register Now
                             </RegisterButton>
                         </EventCard>
@@ -509,7 +584,7 @@ const EventsPage: React.FC = () => {
                         Join thousands of participants in our exciting events
                     </p>
 
-                    <StatsGrid>
+                    {/* <StatsGrid>
                         <StatItem>
                             <StatNumber>50+</StatNumber>
                             <StatLabel>Events</StatLabel>
@@ -526,7 +601,7 @@ const EventsPage: React.FC = () => {
                             <StatNumber>3</StatNumber>
                             <StatLabel>Days</StatLabel>
                         </StatItem>
-                    </StatsGrid>
+                    </StatsGrid> */}
                 </StatsSection>
             </EventsContent>
         </EventsContainer>

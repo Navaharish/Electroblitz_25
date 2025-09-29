@@ -7,6 +7,8 @@ import EventsPage from './components/EventsPage';
 import AboutPage from './components/AboutPage';
 import AdminDashboard from './components/AdminDashboard';
 import Navigation from './components/Navigation';
+import ContactPage from './components/ContactPage';
+import Footer from './components/Footer';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { RegistrationProvider } from './contexts/RegistrationContext';
 
@@ -28,9 +30,11 @@ function App() {
             <Route path="/register" element={<RegistrationPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <Footer />
         </AppContainer>
       </Router>
     </RegistrationProvider>
